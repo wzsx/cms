@@ -87,8 +87,8 @@ class TestController extends Controller
         return view('test.reg');
     }
     public function toreg(Request $request){
-        echo __METHOD__;
-        echo '<pre>';print_r($_POST);echo '</pre>';
+        //echo __METHOD__;
+        //echo '<pre>';print_r($_POST);echo '</pre>';
         $data=[
             'root' => $request->input('u_name'),
             'email' =>$request->input('u_email'),
@@ -96,7 +96,7 @@ class TestController extends Controller
             'reg_time' =>time()
         ];
         $id=Cmsmodel::insertGetId($data);
-        var_dump($id);
+        //var_dump($id);
         if($id){
             echo '注册成功';
         }else{
@@ -107,15 +107,15 @@ class TestController extends Controller
         return view('test.regadd');
     }
     public function userAdd(Request $request){
-        echo __METHOD__;
-        echo '<pre>';print_r($_POST);echo '</pre>';
+        //echo __METHOD__;
+        //echo '<pre>';print_r($_POST);echo '</pre>';
         $data=[
             'root' => $request->input('u_name'),
             'age' =>$request->input('u_pwd'),
             'reg_time' =>time()
         ];
         $id=Cmsmodel::insertGetId($data);
-        var_dump($id);
+        //var_dump($id);
         if($id){
             echo '登录成功';
         }else{
