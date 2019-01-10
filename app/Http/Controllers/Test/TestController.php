@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Test;
 
-use App\Model\Cmsmodel;
+use App\Model\UserModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use DB;
 
+use DB;
 class TestController extends Controller
 {
     //
@@ -54,26 +54,26 @@ class TestController extends Controller
 
     public function query2()
     {
-        $user = DB::table('p_users')->where('id', 3)->first();
+        $user = DB::table('p_users')->where('uid', 3)->first();
         echo '<pre>';print_r($user);echo '</pre>';echo '<hr>';
-        $root= DB::table('p_users')->where('id', 4)->value('root');
-        var_dump($root);echo '<hr>';
-        $info = DB::table('p_users')->pluck('age', 'sex')->toArray();
+        $email = DB::table('p_users')->where('uid', 4)->value('email');
+        var_dump($email);echo '<hr>';
+        $info = DB::table('p_users')->pluck('age', 'name')->toArray();
         echo '<pre>';print_r($info);echo '</pre>';
 
 
     }
 
 
-    public function viewtest1()
+    public function viewTest1()
     {
         $data = [];
         return view('test.index',$data);
     }
 
-    public function viewtest2()
+    public function viewTest2()
     {
-        $list = Cmsmodel::all()->toArray();
+        $list = UserModel::all()->toArray();
         //echo '<pre>';print_r($list);echo '</pre>';
 
         $data = [
@@ -83,43 +83,36 @@ class TestController extends Controller
 
         return view('test.child',$data);
     }
-    public function reg(){
-        return view('test.reg');
+
+    /**
+     * Cookie 测试
+     * 2019年1月4日13:25:50
+     */
+    public function cookieTest1()
+    {
+        setcookie('cookie1','lening',time()+1200,'/','lening.com',false,true);
+        echo '<pre>';print_r($_COOKIE);echo '</pre>';
     }
-    public function toreg(Request $request){
-        //echo __METHOD__;
-        //echo '<pre>';print_r($_POST);echo '</pre>';
-        $data=[
-            'root' => $request->input('u_name'),
-            'email' =>$request->input('u_email'),
-            'age' =>$request->input('u_pwd'),
-            'reg_time' =>time()
-        ];
-        $id=Cmsmodel::insertGetId($data);
-        //var_dump($id);
-        if($id){
-            echo '注册成功';
-        }else{
-            echo '注册失败';
-        }
+
+    public function cookieTest2()
+    {
+        echo '<pre>';print_r($_COOKIE);echo '</pre>';
     }
-    public function users(){
-        return view('test.regadd');
+
+    public function sessionTest(Request $request)
+    {
+        $request->session()->put('aaa','aaaaaa');
+        echo '<pre>';print_r($request->session()->all());echo '</pre>';
+        //echo '<pre>';print_r(Session::all());echo '</pre>';
     }
-    public function userAdd(Request $request){
-        //echo __METHOD__;
-        //echo '<pre>';print_r($_POST);echo '</pre>';
-        $data=[
-            'root' => $request->input('u_name'),
-            'age' =>$request->input('u_pwd'),
-            'reg_time' =>time()
-        ];
-        $id=Cmsmodel::insertGetId($data);
-        //var_dump($id);
-        if($id){
-            echo '登录成功';
-        }else{
-            echo '登录失败';
-        }
+
+    public function mid1()
+    {
+        echo __METHOD__;
+    }
+
+    public function checkCookie()
+    {
+        echo __METHOD__;
     }
 }

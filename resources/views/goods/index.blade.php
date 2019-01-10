@@ -9,9 +9,9 @@
 
         <form class="form-inline">
             <div class="form-group">
-                <label class="sr-only" for="buy_num">Amount (in dollars)</label>
+                <label class="sr-only" for="goods_num">Amount (in dollars)</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="buy_num" value="1">
+                    <input type="text" class="form-control" id="goods_num" value="1">
                 </div>
             </div>
             <input type="hidden" id="goods_id" value="{{$goods->goods_id}}">

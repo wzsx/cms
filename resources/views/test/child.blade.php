@@ -16,7 +16,7 @@
         <tbody>
         @foreach($list as $v)
             <tr>
-                <td>{{$v['id']}}</td><td>{{$v['root']}}</td><td>{{$v['age']}}</td><td>{{$v['email']}}</td><td>{{date('Y-m-d H:i:s',$v['reg_time'])}}</td>
+                <td>{{$v['uid']}}</td><td>{{$v['name']}}</td><td>{{$v['age']}}</td><td>{{$v['email']}}</td><td>{{date('Y-m-d H:i:s',$v['reg_time'])}}</td>
             </tr>
         @endforeach
         </tbody>
