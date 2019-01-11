@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    //echo date('Y-m-d H:i:s' );
-    echo '<pre>';print_r($_COOKIE);echo '</pre>';
+    echo date('Y-m-d H:i:s' );
+    //echo '<pre>';print_r($_COOKIE);echo '</pre>';
     //return view('welcome');
 });
 
-Route::get('/','Home\IndexController@index');
+//Route::get('/','Home\IndexController@index');
 
 Route::get('/info',function(){
     phpinfo();
@@ -104,3 +104,7 @@ Route::get('/goods/{goods_id}','Goods\IndexController@index');          //商品
 
 //订单
 Route::get('/order/add','Order\IndexController@add');           //下单
+Route::get('/order/list','Order\IndexController@orderList');           //订单列表
+
+//支付
+Route::get('/pay/o/{oid}','Pay\IndexController@order')->middleware('check.login.token');         //订单支付

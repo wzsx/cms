@@ -78,7 +78,7 @@ class UserController extends Controller
         $uid = UserModel::insertGetId($data);
 
         if($uid){
-            setcookie('uid',$uid,time()+86400,'/','lening.com',false,true);
+            setcookie('uid',$uid,time()+86400,'/','cms.com',false,true);
             header("Refresh:3;url=/user/center");
             echo '注册成功,正在跳转';
         }else{
@@ -109,8 +109,8 @@ class UserController extends Controller
             if( password_verify($pass,$u->pass) ){
 
                 $token = substr(md5(time().mt_rand(1,99999)),10,10);
-                setcookie('uid',$u->uid,time()+86400,'/','lening.com',false,true);
-                setcookie('token',$token,time()+86400,'/user','',false,true);
+                setcookie('uid',$u->uid,time()+86400,'/','cms.com',false,true);
+                setcookie('token',$token,time()+86400,'/user','cms.com',false,true);
 
                 $request->session()->put('u_token',$token);
                 $request->session()->put('uid',$u->uid);
