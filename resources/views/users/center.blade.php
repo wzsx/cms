@@ -79,7 +79,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            个人中心
+            个人中心乃私人隐私，闲杂人等请勿访问
         </div>
 
     </div>
