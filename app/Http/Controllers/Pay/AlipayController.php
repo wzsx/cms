@@ -37,8 +37,6 @@ class AlipayController extends Controller
 
 
     }*/
-
-
     public function test()
     {
 
