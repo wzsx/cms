@@ -22,21 +22,6 @@ class AlipayController extends Controller
      * 请求订单服务 处理订单逻辑
      *
      */
-    /*public function test0()
-    {
-        //
-        $url = 'http://vm.order.cms.com';
-        // $client = new Client();
-        $client = new Client([
-            'base_uri' => $url,
-            'timeout'  => 2.0,
-        ]);
-
-        $response = $client->request('GET', '/order.php');
-        echo $response->getBody();
-
-
-    }*/
     public function test()
     {
 
