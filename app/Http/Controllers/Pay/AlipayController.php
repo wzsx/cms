@@ -12,9 +12,9 @@ class AlipayController extends Controller
     //
 
 
-    public $app_id = '2016092500593666';
+    public $app_id = '2016092200571846';
     public $gate_way = 'https://openapi.alipaydev.com/gateway.do';
-    public $notify_url = 'http://shop.comcto.com/pay/alipay/notify';
+    public $notify_url = 'http://xiuge.52self.cn/pay/alipay/notify';
     public $rsaPrivateKeyFilePath = './key/priv.key';
 
 
@@ -22,10 +22,10 @@ class AlipayController extends Controller
      * 请求订单服务 处理订单逻辑
      *
      */
-    public function test0()
+    /*public function test0()
     {
         //
-        $url = 'http://vm.order.lening.com';
+        $url = 'http://vm.order.cms.com';
         // $client = new Client();
         $client = new Client([
             'base_uri' => $url,
@@ -36,7 +36,7 @@ class AlipayController extends Controller
         echo $response->getBody();
 
 
-    }
+    }*/
 
 
     public function test()
