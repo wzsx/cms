@@ -11,12 +11,18 @@ class AlipayController extends Controller
 {
     //
 
-
-    public $app_id = '2016092200571846';
-    public $gate_way = 'https://openapi.alipaydev.com/gateway.do';
-    public $notify_url = 'http://xiuge.52self.cn/pay/alipay/notify';
+    public $app_id;
+    public $gate_way;
+    public $notify_url;
+    public $return_url;
     public $rsaPrivateKeyFilePath = './key/priv.key';
-
+    public function __construct()
+    {
+        $this->app_id = env('ALIPAY_APPID');
+        $this->gate_way = env('ALIPAY_GATEWAY');
+        $this->notify_url = env('ALIPAY_NOTIFY_URL');
+        $this->return_url = env('ALIPAY_RETURN_URL');
+    }
 
     /**
      * 请求订单服务 处理订单逻辑
@@ -42,6 +48,7 @@ class AlipayController extends Controller
             'timestamp'   => date('Y-m-d H:i:s'),
             'version'   => '1.0',
             'notify_url'   => $this->notify_url,
+            'return_url'   => $this->return_url,
             'biz_content'   => json_encode($bizcont),
         ];
 
@@ -130,4 +137,26 @@ class AlipayController extends Controller
 
         return $data;
     }
+    /**
+     * 支付宝同步通知回调
+     */
+    public function aliReturn()
+    {
+        echo '<pre>';print_r($_GET);echo '</pre>';
+    }
+
+    /**
+     * 支付宝异步通知
+     */
+    public function aliNotify()
+    {
+        $data = json_encode($_POST);
+        //$data = file_get_contents("php://input");
+        $log_str = '>>>> '.date('Y-m-d H:i:s') . $data . "<<<<\n\n";
+        file_put_contents('logs/alipay.log',$log_str,FILE_APPEND);
+
+        echo 'success';
+
+    }
 }
+

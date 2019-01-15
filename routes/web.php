@@ -70,7 +70,7 @@ Route::post('/user/reg','User\UserController@doReg');
 
 Route::get('/user/login','User\UserController@login');           //用户登录
 Route::post('/user/login','User\UserController@doLogin');        //用户登录
-Route::get('/user/center','User\UserController@center');        //个人中心
+Route::get('/user/center','User\UserController@center')->middleware('check.login.token');;        //个人中心
 
 
 //模板引入静态文件
@@ -83,6 +83,7 @@ Route::get('/mvc/bst','Mvc\MvcController@bst');
 //Route::get('/test/cookie','Test\TestController@cookieTest');
 
 //Test
+Route::any('/test/guzzle','Test\TestController@guzzleTest');
 Route::get('/test/cookie1','Test\TestController@cookieTest1');
 Route::get('/test/cookie2','Test\TestController@cookieTest2');
 Route::get('/test/session','Test\TestController@sessionTest');
@@ -109,4 +110,5 @@ Route::get('/order/list','Order\IndexController@orderList');           //订单�
 //支付
 Route::get('/pay/o/{oid}','Pay\IndexController@order')->middleware('check.login.token');         //订单支付
 Route::get('/pay/alipay/test','Pay\AlipayController@test');         //测试
-Route::post('/pay/alipay/notify','Pay\AlipayController@notify');        //支付宝支付 通知回调
+Route::post('/pay/alipay/notify','Pay\AlipayController@aliNotify');        //支付宝支付 异步通知回调
+Route::get('/pay/alipay/return','Pay\AlipayController@aliReturn');        //支付宝支付 同步通知回调

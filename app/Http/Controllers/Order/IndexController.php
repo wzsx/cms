@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Order;
 
 use App\Model\CartModel;
 use App\Model\GoodsModel;
+use App\Model\OrderGoodsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -40,7 +41,7 @@ class IndexController extends Controller
 
         //生成订单号
         $order_sn = OrderModel::generateOrderSN();
-        echo $order_sn;
+        //echo $order_sn;
         $data = [
             'order_sn'      => $order_sn,
             'uid'           => session()->get('uid'),
@@ -53,6 +54,10 @@ class IndexController extends Controller
             echo '生成订单失败';
         }
 
+        //写入订单商品表
+        foreach($list as $k=>$v){
+            OrderGoodsModel::insert(['goods_id'=>$v['goods_id'],'oid'=>$oid,'price'=>$v['price'],'num'=>$v['num']]);
+        }
         echo '下单成功,订单号：'.$oid .' 跳转支付';
 
 
