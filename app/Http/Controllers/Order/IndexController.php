@@ -48,7 +48,7 @@ class IndexController extends Controller
             'add_time'      => time(),
             'order_amount'  => $order_amount
         ];
-
+        //写入订单表
         $oid = OrderModel::insertGetId($data);
         if(!$oid){
             echo '生成订单失败';
