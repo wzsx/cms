@@ -16,9 +16,11 @@ class checkLoginToken
     public function handle($request, Closure $next)
     {
         if(!$request->session()->get('u_token')){
-            header('Refresh:2;url=/user/login');
-            echo '请先登录';
-            exit;
+            echo json_encode([
+                'error' => 301,
+                'url'   => url('/user/login')
+            ]);
+            die;
         }
         return $next($request);
     }
