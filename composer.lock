@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "461b4e0bc693f963bd7faa4e678caaa9",
+    "content-hash": "e384e5b64a0b6cef208b0630549d6c73",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -938,6 +938,111 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "jxlwqq/simditor",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jxlwqq/simditor.git",
+                "reference": "f7f50c6d976db030df50737c4bb864199a159b3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jxlwqq/simditor/zipball/f7f50c6d976db030df50737c4bb864199a159b3d",
+                "reference": "f7f50c6d976db030df50737c4bb864199a159b3d",
+                "shasum": ""
+            },
+            "require": {
+                "encore/laravel-admin": "~1.6",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jxlwqq\\Simditor\\SimditorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jxlwqq\\Simditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jxlwqq",
+                    "email": "jxlwqq@gmail.com"
+                }
+            ],
+            "description": "Simditor for Laravel-admin",
+            "homepage": "https://github.com/jxlwqq/simditor",
+            "keywords": [
+                "extension",
+                "laravel-admin"
+            ],
+            "time": "2018-09-22T08:06:36+00:00"
+        },
+        {
+            "name": "laravel-admin-ext/summernote",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-admin-extensions/summernote.git",
+                "reference": "926b6cd492108f38ff747a267a511a7452e5641a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/summernote/zipball/926b6cd492108f38ff747a267a511a7452e5641a",
+                "reference": "926b6cd492108f38ff747a267a511a7452e5641a",
+                "shasum": ""
+            },
+            "require": {
+                "encore/laravel-admin": "~1.6",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Encore\\Summernote\\SummernoteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Encore\\Summernote\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "song",
+                    "email": "zsong@126.com"
+                }
+            ],
+            "description": "Summernote extension for laravel-admin",
+            "homepage": "https://github.com/laravel-admin-ext/summernote",
+            "keywords": [
+                "editor",
+                "extension",
+                "laravel-admin"
+            ],
+            "time": "2018-09-09T09:40:13+00:00"
         },
         {
             "name": "laravel/framework",
