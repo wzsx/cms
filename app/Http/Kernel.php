@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'check.uid' =>CheckUid::class,
         'check.cookie' =>CheckCookie::class,
         'check.login.token' => checkLoginToken::class,
+        'check.logins.token'=>checkLoginsToken::class,
     ];
 }

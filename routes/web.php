@@ -23,9 +23,11 @@ Route::get('/info',function(){
     phpinfo();
 });
 Route::get('/adduser','User\UserController@add');
+Route::get('/adduser','Users\UsersController@add');
 Route::get('user','user\User@test');
 Route::get('vip/{id}','vip\vip@vip');
 Route::get('user/add','user\User@add');
+Route::get('users/add','users\User@add');
 Route::get('user/update/{id}','user\User@update');
 Route::get('user/update/{id}','user\User@update');
 Route::get('user/delete/{id}','user\User@delete');
@@ -58,11 +60,11 @@ Route::any('/test/abc','Test\TestController@abc');
 Route::get('/view/test1','Test\TestController@viewtest1');
 Route::get('/view/test2','Test\TestController@viewtest2');
 ////用户注册
-//Route::get('/userreg','Test\TestController@reg');
-//Route::post('/userreg','Test\TestController@toReg');
+Route::get('/userreg','Test\TestController@reg');
+Route::post('/userreg','Test\TestController@toReg');
 ////用户登录
-//Route::get('/userup','Test\TestController@users');
-//Route::post('/userup','Test\TestController@userAdd');
+Route::get('/userup','Test\TestController@users');
+Route::post('/userup','Test\TestController@userAdd');
 
 //用户注册
 Route::get('/user/reg','User\UserController@reg');
@@ -112,6 +114,26 @@ Route::get('/pay/o/{oid}','Pay\AlipayController@pay')->middleware('check.login.t
 Route::get('/pay/alipay/test','Pay\AlipayController@test');         //测试
 Route::post('/pay/alipay/notify','Pay\AlipayController@aliNotify');        //支付宝支付 异步通知回调
 Route::get('/pay/alipay/return','Pay\AlipayController@aliReturn');        //支付宝支付 同步通知回调
+
+Route::get('/crontab/delete_orders','Crontabs\IndexController@deleteOrders');        //删除过期订单
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//文件上传
+Route::get('/upload','Goods\IndexController@uploadIndex');
+Route::post('/goods/upload/pdf','Goods\IndexController@uploadPDF');
+
+//用户注册
+Route::get('/users/regs','Users\UsersController@regs');
+Route::post('/users/regs','Users\UsersController@doRegs');
+//用户登录
+Route::get('/users/login','Users\UsersController@login');
+Route::post('/users/login','Users\UsersController@doLogin');
+Route::get('/users/center','Users\UsersController@center')->middleware('check.login.token');
+//用户修改密码
+Route::get('/users/upass','Users\UsersController@upass');
+Route::post('/users/upass','Users\UsersController@doUpass');
+//座位号
+Route::get('/seat/seat','Seat\SeatController@seat');
