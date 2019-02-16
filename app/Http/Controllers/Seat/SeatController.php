@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Seat;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+//use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
 
 class SeatController extends Controller
@@ -11,7 +11,7 @@ class SeatController extends Controller
 
     public function seat()
     {
-        return view('seat.seat');
+        //return view('seat.seat');
         $key= 'test_bit';
 
         $set_status = [];
@@ -22,11 +22,11 @@ class SeatController extends Controller
         $data = [
             'seat' => $seat_status
         ];
-        return view('movie.index',$data);
+        return view('seat.seat',$data);
     }
      public function buy($pos,$status)
      {
          $key = 'test_bit';
-         Redis::setbit();
+         Redis::setbit($key,$pos,$status);
      }
 }
