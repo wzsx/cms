@@ -16,7 +16,15 @@ Route::get('/', function () {
     //echo '<pre>';print_r($_COOKIE);echo '</pre>';
     //return view('welcome');
 });
+Route::group([
+    'prefix'    => '/admin/',
+],function(){
+    return 'aaa';
+});
 
+Route::get('/admin*',function(){
+    return '403';
+});
 //Route::get('/','Home\IndexController@index');
 
 Route::get('/info',function(){
@@ -137,3 +145,10 @@ Route::get('/users/upass','Users\UsersController@upass');
 Route::post('/users/upass','Users\UsersController@doUpass');
 //座位号
 Route::get('/seat/seat','Seat\SeatController@seat');
+
+//微信
+Route::get('/weixin/test','Weixin\WeixinController@test');
+Route::get('/weixin/valid','Weixin\WeixinController@validToken');
+Route::get('/weixin/valid1','Weixin\WeixinController@validToken1');
+Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收微信服务器事件推送
+Route::post('/weixin/valid','Weixin\WeixinController@validToken');
