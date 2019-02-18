@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Weixin;
+
 use App\Model\WeixinUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,6 +38,11 @@ class WeixinController extends Controller
     public function wxEvent()
     {
         $data = file_get_contents("php://input");
+        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
+        exit;
+
+
         //解析XML
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
 
@@ -75,8 +81,7 @@ class WeixinController extends Controller
             }
         }
 
-        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
-        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
+
     }
 
 
@@ -131,4 +136,8 @@ class WeixinController extends Controller
         //echo '<pre>';print_r($data);echo '</pre>';
         return $data;
     }
+
+
+
+
 }
