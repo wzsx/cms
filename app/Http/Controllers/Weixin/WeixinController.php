@@ -27,8 +27,7 @@ class WeixinController extends Controller
     public function wxEvent()
     {
         $data = file_get_contents("php://input");
-        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
-        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
+
 
 
 
@@ -42,13 +41,8 @@ class WeixinController extends Controller
             $openid = $xml->FromUserName;               //用户openid
             $sub_time = $xml->CreateTime;               //扫码关注时间
 
-
-            echo 'openid: '.$openid;echo '</br>';
-            echo '$sub_time: ' . $sub_time;
-
             //获取用户信息
             $user_info = $this->getUserInfo($openid);
-            echo '<pre>';print_r($user_info);echo '</pre>';
 
             //保存用户信息
             $u = WeixinUser::where(['openid'=>$openid])->first();
@@ -64,12 +58,11 @@ class WeixinController extends Controller
                     'headimgurl'        => $user_info['headimgurl'],
                     'subscribe_time'    => $sub_time,
                 ];
-
                 $id = WeixinUser::insertGetId($user_data);      //保存用户信息
-                var_dump($id);
             }
         }
-
+        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
 
     }
 
