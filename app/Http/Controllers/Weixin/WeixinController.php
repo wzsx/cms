@@ -136,8 +136,18 @@ class WeixinController extends Controller
                  "url"   => "https://www.baidu.com"
              ]
          ]
+         ],
+             [
+                 "name"=>"表白网",
+                 "sub_button"=>[
+                     [
+                         "type"  => "view",      // view类型 跳转指定 URL
+                         "name"  => "阴雨天",
+                         "url"   => "https://bbw.52self.cn"
+                     ]
+                 ]
          ]
-         ]
+             ]
      ];
 
 
