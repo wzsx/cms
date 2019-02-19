@@ -127,17 +127,22 @@ class WeixinController extends Controller
 
      $data = [
          "button"    => [
+     [
+         "name"=>"秀歌",
+                 "sub_button"=>[
              [
                  "type"  => "view",      // view类型 跳转指定 URL
-                 "name"  => "Yinyutian",
+                 "name"  => "阴雨天",
                  "url"   => "https://www.baidu.com"
              ]
+         ]
+         ]
          ]
      ];
 
 
      $r = $client->request('POST', $url, [
-         'body' => json_encode($data)
+         'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
      ]);
      // 3 解析微信接口返回信息
 
