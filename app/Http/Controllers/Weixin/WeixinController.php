@@ -143,7 +143,7 @@ class WeixinController extends Controller
                      [
                          "type"  => "view",      // view类型 跳转指定 URL
                          "name"  => "阴雨天",
-                         "url"   => "https://bbw.52self.cn"
+                         "url"   => "https://yby.52self.cn"
                      ]
                  ]
          ]
