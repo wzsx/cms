@@ -138,12 +138,12 @@ class WeixinController extends Controller
          ]
          ],
              [
-                 "name"=>"表白网",
+                 "name"=>"XXX",
                  "sub_button"=>[
                      [
                          "type"  => "view",      // view类型 跳转指定 URL
-                         "name"  => "阴雨天",
-                         "url"   => "https://yby.52self.cn"
+                         "name"  => "BBY",
+                         "url"   => "http://yby.52self.cn"
                      ]
                  ]
          ]
