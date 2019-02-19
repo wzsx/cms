@@ -13,13 +13,17 @@ class WeixinController extends Controller
     //
 
     protected $redis_weixin_access_token = 'str:weixin_access_token';     //微信 access_token
-
-
-
+    public function test()
+    {
+        echo 'Token: '. $this->getWXAccessToken();
+    }
     /**
      * 首次接入
      */
-
+    public function validToken1()
+    {
+        echo 1;
+    }
 
     /**
      * 接收微信服务器事件推送
@@ -27,9 +31,6 @@ class WeixinController extends Controller
     public function wxEvent()
     {
         $data = file_get_contents("php://input");
-
-
-
 
         //解析XML
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
@@ -65,12 +66,6 @@ class WeixinController extends Controller
         file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
 
     }
-
-    public function validToken1()
-    {
-        echo 1;
-    }
-
 
     /**
      * 接收事件推送
@@ -134,7 +129,7 @@ class WeixinController extends Controller
          "button"    => [
              [
                  "type"  => "view",      // view类型 跳转指定 URL
-                 "name"  => "Lening222",
+                 "name"  => "Yinyutian",
                  "url"   => "https://www.baidu.com"
              ]
          ]
