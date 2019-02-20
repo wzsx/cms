@@ -187,7 +187,7 @@ class WeixinController extends Controller
      * 群发消息
     */
     public function sendTextAll(){
-        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token='.$this->getWXAccessToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$this->getWXAccessToken();
         $client = new GuzzleHttp\Client(['base_uri' => $url]);
         $data=[
           "filter"=>[
