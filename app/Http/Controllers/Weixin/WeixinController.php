@@ -205,6 +205,7 @@ class WeixinController extends Controller
         // 3 解析微信接口返回信息
 
         $response_arr = json_decode($r->getBody(),true);
+        var_dump($response_arr);
         if($response_arr['errcode'] == 0){
             echo "群发成功";
         }else{
