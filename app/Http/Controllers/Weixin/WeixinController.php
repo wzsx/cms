@@ -195,7 +195,7 @@ class WeixinController extends Controller
               "tag_id"=>""
           ],
           "text"=>[
-              "content"=>"撸串"
+              "content"=>"嘤嘤嘤"
           ],
             "msgtype"=>"text"
         ];
