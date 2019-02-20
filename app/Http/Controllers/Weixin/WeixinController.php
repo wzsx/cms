@@ -56,7 +56,7 @@ class WeixinController extends Controller
                     echo $xml_response;
                 }
             }
-            exit();
+            //exit();
         }
 
         if($event=='subscribe') {
