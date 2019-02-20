@@ -191,11 +191,11 @@ class WeixinController extends Controller
         $client = new GuzzleHttp\Client(['base_uri' => $url]);
         $data=[
           "filter"=>[
-              "is_to_all"=>"true",
-              "tag_id"=>""
+              "is_to_all"=>"false",
+              "tag_id"=>"2"
           ],
           "text"=>[
-              "content"=>"嘤嘤嘤"
+              "content"=>"嗨皮"
           ],
             "msgtype"=>"text"
         ];
