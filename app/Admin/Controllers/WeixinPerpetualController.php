@@ -10,6 +10,9 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use GuzzleHttp;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
 class WeixinPerpetualController extends Controller
 {
     use HasResourceActions;
