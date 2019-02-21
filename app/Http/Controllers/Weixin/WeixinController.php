@@ -369,6 +369,18 @@ class WeixinController extends Controller
                 "content_source_url"=>"",
             ]
         ];
+        $r = $client->request('POST', $url, [
+            'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
+        ]);
+        // 3 解析微信接口返回信息
+
+        $response_arr = json_decode($r->getBody(),true);
+        if($response_arr['errcode'] == 0){
+            echo "永久素材创建成功";
+        }else{
+            echo "永久素材创建失败，请重试";echo '</br>';
+            echo $response_arr['errmsg'];
+        }
     }
 
 
