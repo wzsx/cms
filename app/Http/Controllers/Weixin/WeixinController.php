@@ -353,6 +353,27 @@ class WeixinController extends Controller
         }
     }
     /**
+     * 新增永久素材
+     */
+    public function added(){
+       //拼接新增永久素材
+        $url='https://api.weixin.qq.com/cgi-bin/material/add_news?access_token='.$this->getWXAccessToken();
+        $client = new GuzzleHttp\Client(['base_uri' => $url]);
+        $data=[
+            "articles"=>[
+                "title"=> "阴雨天",
+                "thumb_media_id"=>  "" ,
+                "author"=>"二爷",
+                "show_cover_pic"=>1,
+                "content"=>"",
+                "content_source_url"=>"",
+            ]
+        ];
+    }
+
+
+
+    /**
      * 刷新access_token
      */
     public function refreshToken()
