@@ -9,7 +9,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
-
+use GuzzleHttp;
 class WeixinPerpetualController extends Controller
 {
     use HasResourceActions;
@@ -125,16 +125,66 @@ class WeixinPerpetualController extends Controller
     protected function form()
     {
         $form = new Form(new WeixinPerpetual);
-
-        $form->text('openid', 'Openid');
-        $form->number('add_time', 'Add time');
-        $form->text('msg_type', 'Msg type');
-        $form->text('media_id', 'Media id');
-        $form->text('format', 'Format');
-        $form->text('msg_id', 'Msg id');
-        $form->text('local_file_name', 'Local file name');
-        $form->text('local_file_path', 'Local file path');
+        $form->textarea('content','群发内容(只能文本)');
+//        $form->text('openid', 'Openid');
+//        $form->number('add_time', 'Add time');
+//        $form->text('msg_type', 'Msg type');
+//        $form->text('media_id', 'Media id');
+//        $form->text('format', 'Format');
+//        $form->text('msg_id', 'Msg id');
+//        $form->text('local_file_name', 'Local file name');
+//        $form->text('local_file_path', 'Local file path');
 
         return $form;
+    }
+    /**
+     * 群发消息
+     */
+    public function sendTextAll(){
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$this->getWXAccessToken();
+        $client = new GuzzleHttp\Client(['base_uri' => $url]);
+        $data=[
+            "filter"=>[
+                "is_to_all"=>true,
+                "tag_id"=>2
+            ],
+            "text"=>[
+                "content"=>"嗨皮"
+            ],
+            "msgtype"=>"text"
+        ];
+        $r = $client->request('POST', $url, [
+            'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
+        ]);
+        // 3 解析微信接口返回信息
+
+        $response_arr = json_decode($r->getBody(),true);
+        var_dump($response_arr);
+        if($response_arr['errcode'] == 0){
+            echo "群发成功";
+        }else{
+            echo "群发失败，请重试";echo '</br>';
+            echo $response_arr['errmsg'];
+        }
+    }
+    /**
+     * 获取微信AccessToken
+     */
+    public function getWXAccessToken()
+    {
+
+        //获取缓存
+        $token = Redis::get($this->redis_weixin_access_token);
+        if(!$token){        // 无缓存 请求微信接口
+            $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WEIXIN_APPID').'&secret='.env('WEIXIN_APPSECRET');
+            $data = json_decode(file_get_contents($url),true);
+
+            //记录缓存
+            $token = $data['access_token'];
+            Redis::set($this->redis_weixin_access_token,$token);
+            Redis::setTimeout($this->redis_weixin_access_token,3600);
+        }
+        return $token;
+
     }
 }
