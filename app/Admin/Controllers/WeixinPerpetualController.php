@@ -144,16 +144,16 @@ class WeixinPerpetualController extends Controller
     /**
      * 群发消息
      */
-    public function sendTextAll(){
+    public function sendTextAll(Request $request){
         $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$this->getWXAccessToken();
         $client = new GuzzleHttp\Client(['base_uri' => $url]);
+        $content=$request->input('content');
         $data=[
             "filter"=>[
                 "is_to_all"=>true,
-                "tag_id"=>2
             ],
             "text"=>[
-                "content"=>"嗨皮"
+                "content"=>$content
             ],
             "msgtype"=>"text"
         ];
