@@ -20,6 +20,7 @@ class WeixinPerpetualController extends Controller
      * @param Content $content
      * @return Content
      */
+    protected $redis_weixin_access_token='astr:weixin_access_token';//微信access_token
     public function index(Content $content)
     {
         return $content
