@@ -351,9 +351,9 @@ class WeixinController extends Controller
             echo $response_arr['errmsg'];
         }
     }
-    public function file(){
-        return view ('weixin.weixin');
-    }
+//    public function file(){
+//        return view ('weixin.weixin');
+//    }
     /**
      * 新增永久素材
      */
@@ -438,7 +438,7 @@ class WeixinController extends Controller
     public function formShow()
     {
 
-        return view('test.form');
+        return view('weixin.weixin');
 
     }
 
