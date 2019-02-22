@@ -130,7 +130,7 @@ class WeixinPerpetualController extends Controller
     {
         $form = new Form(new WeixinPerpetual);
         $form->textarea('content','群发内容(只能文本)');
-        $form->file('aaaaaa');
+        $form->file('上传图片');
 //        $form->text('openid', 'Openid');
 //        $form->number('add_time', 'Add time');
 //        $form->text('msg_type', 'Msg type');
