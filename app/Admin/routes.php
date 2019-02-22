@@ -17,4 +17,7 @@ Route::group([
     $router->resource('/wxmedia',WeixinMediaController::class); //微信素材管理
     $router->resource('/perpetual',WeixinPerpetualController::class);//永久素材管理
     $router->post('/perpetual','WeixinPerpetualController@sendTextAll');//群发管理
+    $router->resource('/tp',WeixinTpController::class);//永久素材管理
+    $router->post('/tp','WeixinTpController@formTest');//群发管理
+
 });

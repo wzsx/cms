@@ -355,29 +355,6 @@ class WeixinController extends Controller
     /**
      * 新增永久素材
      */
-    public function upMaterial(){
-       //拼接新增永久素材
-        $url='https://api.weixin.qq.com/cgi-bin/material/add_material?access_token='.$this->getWXAccessToken().'&type=image';
-        $client = new GuzzleHttp\Client();
-        $response = $client->request('POST',$url,[
-            'multipart' => [
-                [
-                    'name'     => 'username',
-                    'contents' => 'zhangsan'
-                ],
-                [
-                    'name'     => 'media',
-                    'contents' => fopen('abc.jpg', 'r')
-                ],
-            ]
-        ]);
-
-        $body = $response->getBody();
-        echo $body;echo '<hr>';
-        $d = json_decode($body,true);
-        echo '<pre>';print_r($d);echo '</pre>';
-
-    }
 
     public function upMaterialTest($file_path)
     {
@@ -477,11 +454,6 @@ class WeixinController extends Controller
         Redis::del($this->redis_weixin_access_token);
         echo $this->getWXAccessToken();
     }
-    public function materialTest()
-    {
-        //echo __METHOD__;echo '</br>';
-        echo '<pre>';print_r($_POST);echo '</pre>';echo '</br>';
-        echo '<pre>';print_r($_FILES);echo '</pre>';
-    }
+
 
 }
