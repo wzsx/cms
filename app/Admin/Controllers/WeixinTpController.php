@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class WeixinTpController extends Controller
 {
     use HasResourceActions;
-
+    protected $redis_weixin_access_token='astr:weixin_access_token';//微信access_token
     /**
      * Index interface.
      *
@@ -128,7 +128,7 @@ class WeixinTpController extends Controller
     protected function form()
     {
         $form = new Form(new WeixinPerpetual);
-        $form->file('tp','上传图片');
+        $form->file('media','上传图片');
 
 //        $form->text('openid', 'Openid');
 //        $form->number('add_time', 'Add time');
@@ -164,6 +164,23 @@ class WeixinTpController extends Controller
     }
 
 
+    public function getWXAccessToken()
+    {
+
+        //获取缓存
+        $token = Redis::get($this->redis_weixin_access_token);
+        if(!$token){        // 无缓存 请求微信接口
+            $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WEIXIN_APPID').'&secret='.env('WEIXIN_APPSECRET');
+            $data = json_decode(file_get_contents($url),true);
+
+            //记录缓存
+            $token = $data['access_token'];
+            Redis::set($this->redis_weixin_access_token,$token);
+            Redis::setTimeout($this->redis_weixin_access_token,3600);
+        }
+        return $token;
+
+    }
     /**
      * 获取永久素材列表
      */
@@ -198,7 +215,7 @@ class WeixinTpController extends Controller
         //echo '<pre>';print_r($_FILES);echo '</pre>';echo '<hr>';
 
         //保存文件
-        $file = $request->file('tp');
+        $file = $request->file('media');
         //echo '<pre>';print_r($img_file);echo '</pre>';echo '<hr>';
 
         $img_origin_name = $file->getClientOriginalName();
@@ -214,7 +231,7 @@ class WeixinTpController extends Controller
 
 
         //保存文件
-        $save_file_path = $request->file->storeAs('tp',$new_file_name);       //返回保存成功之后的文件路径
+        $save_file_path = $request->media->storeAs('file_show',$new_file_name);       //返回保存成功之后的文件路径
 
         echo 'save_file_path: '.$save_file_path;echo '<hr>';
 
