@@ -77,7 +77,7 @@ class UsersController extends Controller
     protected function form()
     {
         $form = new Form(new UserModel());
-
+        $form->file('a');
         $form->text('nick_name', '昵称');
         $form->text('age', '年龄');
         $form->email('email', 'Email');
