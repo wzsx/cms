@@ -9,6 +9,10 @@
         <button type="submit" class="btn btn-default">发送</button>
     </form>
 @endsection
+@section('footer')
+    @parent
+    <script src="{{URL::asset('/js/weixin/weixin.js')}}"></script>
+@endsection
 
 
 

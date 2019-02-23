@@ -91,6 +91,11 @@ class WeiXinController extends Controller
             return '<img src="'.$img_url.'">';
         });
         $grid->subscribe_time('Subscribe time');
+        $grid->actions(function ($actions) {
+            // append一个操作
+            $actions->prepend('<a href="/weixin/service"><i class="fa fa-paper-plane"></i></a>');
+
+        });
 
         return $grid;
     }
