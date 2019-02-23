@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Weixin;
 
 use App\Model\WeixinUser;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Storage;
@@ -494,7 +493,7 @@ class WeixinController extends Controller
     public function chatView()
     {
         $data = [
-            'openid'    => 'oLreB1jAnJFzV_8AGWUZlfuaoQto'
+            'openid'    => 'oVF2K1KcxCurJsnpKjMoN4KUewGI'
         ];
         return view('weixin.chat',$data);
     }

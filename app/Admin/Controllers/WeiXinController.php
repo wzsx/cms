@@ -9,7 +9,10 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use GuzzleHttp;
+use Illuminate\Support\Facades\Storage;
 class WeiXinController extends Controller
 {
     use HasResourceActions;
