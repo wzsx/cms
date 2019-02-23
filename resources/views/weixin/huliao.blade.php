@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <form  action="/form/hl" method="post" enctype="multipart/form-data" >
+    <form  action="/form/hll" method="post" enctype="multipart/form-data" >
         <textarea name="fs" id="" cols="30" rows="10"></textarea>
         <h1>客服管理</h1>
         {{csrf_field()}}

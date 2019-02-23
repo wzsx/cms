@@ -455,12 +455,6 @@ class WeixinController extends Controller
     public function formHl(Request $request)
     {
 
-        //保存文件
-        $textarea= $request->textarea('fs');
-        //保存文件
-
-
-
     }
 
     /**
