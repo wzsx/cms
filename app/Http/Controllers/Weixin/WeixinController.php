@@ -455,7 +455,7 @@ class WeixinController extends Controller
     public function formHl(Request $request)
     {
         $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$this->getWXAccessToken();
-        $content=$request->input('weixin');
+        $content=$request->input('opess');
         $client = new GuzzleHttp\Client(['base_uri' => $url]);
         $data = [
             "touser"=>"oVF2K1KcxCurJsnpKjMoN4KUewGI",
