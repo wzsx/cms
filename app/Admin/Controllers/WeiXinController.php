@@ -96,7 +96,7 @@ class WeiXinController extends Controller
         $grid->subscribe_time('Subscribe time');
         $grid->actions(function ($actions) {
             // append一个操作
-            $actions->prepend('<a href="/weixin/huliao"><i class="fa fa-paper-plane"></i></a>');
+            $actions->prepend('<a href="/fs"><i class="fa fa-paper-plane"></i></a>');
 
         });
 
