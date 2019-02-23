@@ -165,3 +165,7 @@ Route::post('/weixin/material','Weixin\WeixinController@materialTest');     //�
 
 Route::get('/form/fs','Weixin\WeixinController@formFs');     //微信互聊
 Route::post('/form/hll','Weixin\WeixinController@formHl');     //微信互聊
+
+//微信聊天
+Route::get('/weixin/kefu/chat','Weixin\WeixinController@chatView');     //客服聊天
+Route::get('/weixin/chat/get_msg','Weixin\WeixinController@getChatMsg');     //获取用户聊天信息

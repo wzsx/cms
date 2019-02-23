@@ -147,4 +147,40 @@ class WeiXinController extends Controller
         return view('weixin.huliao');
 
     }
+    public function formHl(Request $request)
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$this->getWXAccessToken();
+        $content=$request->input('ts');
+        $client = new GuzzleHttp\Client(['base_uri' => $url]);
+        $data = [
+            "touser"=>"oVF2K1KcxCurJsnpKjMoN4KUewGI",
+            "msgtype"=>"text",
+            "text"=>[
+                "content"=>$content
+            ]
+        ];
+        var_dump($data);
+        $body = json_encode($data, JSON_UNESCAPED_UNICODE);      //处理中文编码
+        $r = $client->request('POST', $url, [
+            'body' => $body
+        ]);
+
+        // 3 解析微信接口返回信息
+
+        $response_arr = json_decode($r->getBody(), true);
+        echo '<pre>';
+        print_r($response_arr);
+        echo '</pre>';
+
+        if ($response_arr['errcode'] == 0) {
+            echo "发送成功";
+        } else {
+            echo "发送失败，请重试";
+            echo '</br>';
+
+
+        }
+
+    }
+
 }
