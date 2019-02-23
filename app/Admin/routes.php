@@ -19,6 +19,6 @@ Route::group([
     $router->post('/perpetual','WeixinPerpetualController@sendTextAll');//群发管理
     $router->resource('/tp',WeixinTpController::class);//永久素材管理
     $router->post('/tp','WeixinTpController@formTest');//群发管理
-    Route::get('/form/fs','WeixinController@formFs');     //微信互聊
-    Route::post('/form/hll','WeixinController@formHl');     //微信互聊
+    $router->post('/fs','WeixinTpController@formFs');//群发管理
+    $router->post('/hll','WeixinTpController@formHl');//群发管理
 });
