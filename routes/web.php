@@ -163,3 +163,5 @@ Route::get('/weixin/material/list','Weixin\WeixinController@materialList');     
 //Route::get('/weixin/material/upload','Weixin\WeixinController@upMaterial');     //上传永久素材
 Route::post('/weixin/material','Weixin\WeixinController@materialTest');     //创建菜单
 
+Route::get('/form/fs','Weixin\WeixinController@formFs');     //微信互聊
+Route::post('/form/hll','Weixin\WeixinController@formHl');     //微信互聊

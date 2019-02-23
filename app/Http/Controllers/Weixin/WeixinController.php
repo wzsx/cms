@@ -444,7 +444,7 @@ class WeixinController extends Controller
 
 
     }
-
+//用户互聊
     public function formFs()
     {
 
@@ -452,18 +452,13 @@ class WeixinController extends Controller
 
     }
 
-    public function formhl(Request $request)
+    public function formHl(Request $request)
     {
 
         //保存文件
-        $text= $request->text('fs');
+        $textarea= $request->textarea('fs');
         //保存文件
-        $save_file_path = $request->media->storeAs('form_test',$new_file_name);       //返回保存成功之后的文件路径
 
-        echo 'save_file_path: '.$save_file_path;echo '<hr>';
-
-        //上传至微信永久素材
-        $this->upMaterialTest($save_file_path);
 
 
     }
