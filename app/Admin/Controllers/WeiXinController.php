@@ -141,4 +141,10 @@ class WeiXinController extends Controller
 
         return $form;
     }
+    public function formFs()
+    {
+
+        return view('weixin.huliao');
+
+    }
 }
