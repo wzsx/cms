@@ -4,9 +4,9 @@
 @section('content')
     <form  action="/form/hll" method="post" enctype="multipart/form-data" >
         <h1>客服管理</h1>
-        <textarea name="fs" id="" cols="30" rows="10">聊天记录</textarea>
+        聊天记录<textarea name="fs" id="" cols="30" rows="10"></textarea><br>
         {{csrf_field()}}
-        <input type="text" name="ts">
+        <input type="text" name="ts"><br>
         <button type="submit" class="btn btn-default">发送</button>
     </form>
 @endsection
