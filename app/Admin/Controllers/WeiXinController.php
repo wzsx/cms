@@ -103,7 +103,7 @@ class WeiXinController extends Controller
         $grid->actions(function ($actions) {
             // append一个操作
             $key=$actions->getKey();
-            $actions->prepend('<a href="admin/weixin/hulaio/create?user_id='.$key.'"><i class="fa fa-paper-plane"></i></a>');
+            $actions->prepend('<a href="/admin/weixin/userinfo/create?user_id='.$key.'"><i class="fa fa-paper-plane"></i></a>');
 
         });
 
