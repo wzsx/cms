@@ -69,10 +69,15 @@ class WeiXinController extends Controller
      */
     public function create(Content $content)
     {
+        $user_id=$_GET['user_id'];
+//        return $content
+//            ->header('Create')
+//            ->description('description')
+//            ->body($this->form());
         return $content
             ->header('Create')
             ->description('description')
-            ->body($this->form());
+            ->body(view('weixin.userchat',['user_id'=>$user_id])->render());
     }
 
     /**
@@ -94,9 +99,11 @@ class WeiXinController extends Controller
             return '<img src="'.$img_url.'">';
         });
         $grid->subscribe_time('Subscribe time');
+
         $grid->actions(function ($actions) {
             // append一个操作
-            $actions->prepend('<a href="/fs"><i class="fa fa-paper-plane"></i></a>');
+            $key=$actions->getKey();
+            $actions->prepend('<a href="admin/weixin/hulaio/create?user_id='.$key.'"><i class="fa fa-paper-plane"></i></a>');
 
         });
 
