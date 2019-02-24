@@ -12,6 +12,7 @@ use Encore\Admin\Show;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
+use App\Model\WeixinChatModel;
 use Illuminate\Support\Facades\Storage;
 class WeiXinController extends Controller
 {
@@ -74,10 +75,12 @@ class WeiXinController extends Controller
 //            ->header('Create')
 //            ->description('description')
 //            ->body($this->form());
+
+$data=WeixinUser::where(['id'=>$user_id])->first();
         return $content
             ->header('Create')
             ->description('description')
-            ->body(view('weixin.userchat',['user_id'=>$user_id])->render());
+            ->body(view('weixin.userchat',['user_info'=>$udata])->render());
     }
 
     /**
@@ -159,38 +162,61 @@ class WeiXinController extends Controller
     }
     public function formHl(Request $request)
     {
-        $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$this->getWXAccessToken();
-        $content=$request->input('ts');
-        $client = new GuzzleHttp\Client(['base_uri' => $url]);
-        $data = [
-            "touser"=>"oVF2K1KcxCurJsnpKjMoN4KUewGI",
-            "msgtype"=>"text",
-            "text"=>[
-                "content"=>$content
-            ]
-        ];
-        var_dump($data);
-        $body = json_encode($data, JSON_UNESCAPED_UNICODE);      //处理中文编码
-        $r = $client->request('POST', $url, [
-            'body' => $body
-        ]);
-
-        // 3 解析微信接口返回信息
-
-        $response_arr = json_decode($r->getBody(), true);
-        echo '<pre>';
-        print_r($response_arr);
-        echo '</pre>';
-
-        if ($response_arr['errcode'] == 0) {
-            echo "发送成功";
-        } else {
-            echo "发送失败，请重试";
-            echo '</br>';
-
-
-        }
-
-    }
+          // echo '<pre>';print_r($_POST);echo '</pre>';echo '<hr>';
+             $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$this->getWXAccessToken();
+             $openid=$request->input('openid');
+             $weixin=$request->input('weixin');
+         
+             //print_r($url);
+             //$content=$request->input('weixin');
+             $client = new GuzzleHttp\Client(['base_uri' => $url]);
+                 $data = [
+                   "touser"=>$openid,
+                    "msgtype"=>"text",
+                   "text"=>[
+                       "content"=>$weixin
+                  ]
+                 ];
+           // var_dump($data);
+                 $body = json_encode($data, JSON_UNESCAPED_UNICODE);      //处理中文编码
+                 $r = $client->request('POST', $url, [
+                     'body' => $body
+                 ]);
+         
+                 // 3 解析微信接口返回信息
+         
+                 $response_arr = json_decode($r->getBody(), true);
+                 echo '<pre>';
+                 print_r($response_arr);
+                 echo '</pre>';
+         
+                 if ($response_arr['errcode'] == 0) {
+                     //存入数据库
+                         $data=[
+                             'text'=>$weixin,
+                             'add_time'=>time(),
+                             'openid'=>$openid,
+                             'nickname'=>'客服'
+         
+                     ];
+                         $res=WeixinChatModel::insert($data);
+                     $arr=[
+                         'code'=>0,
+                         'msg'=>'发送成功',
+                     ];
+                 }else{
+                     $arr=[
+                         'code'=>1,
+                         'msg'=>$response_arr['errmsg'],
+                     ];
+                 }
+             echo json_encode($arr);
+         }
+             public function wx(Request $request){
+                 $openid=$request->input('openid');
+                 $new=WeixinType::orderBy('add_time','asc')->where(['openid'=>$openid])->get();
+                 echo json_encode($new);
+             }
+         
 
 }
