@@ -154,12 +154,7 @@ $data=WeixinUser::where(['id'=>$user_id])->first();
 
         return $form;
     }
-    public function formFs()
-    {
-
-        return view('weixin.huliao');
-
-    }
+  
     public function formHl(Request $request)
     {
           // echo '<pre>';print_r($_POST);echo '</pre>';echo '<hr>';
@@ -214,7 +209,7 @@ $data=WeixinUser::where(['id'=>$user_id])->first();
          }
              public function wx(Request $request){
                  $openid=$request->input('openid');
-                 $new=WeixinType::orderBy('add_time','asc')->where(['openid'=>$openid])->get();
+                 $new=WeixinChatModel::orderBy('add_time','asc')->where(['openid'=>$openid])->get();
                  echo json_encode($new);
              }
          
