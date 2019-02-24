@@ -41,7 +41,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url     :   '{{url("admin//hll")}}',
+                url     :   '{{url("admin/weixin/userinfo/hll")}}',
                 type    :   'post',
                 data    :   {weixin:weixin,openid:openid},
                 dataType:   'json',
@@ -65,7 +65,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-            url:'{{url("admin/weixin/fll")}}',
+            url:'{{url("admin/weixin/userinfo/fll")}}',
             type:'post',
             data:{openid:openid},
             dataType:'json',

@@ -20,7 +20,7 @@ Route::group([
     $router->resource('/tp',WeixinTpController::class);//永久素材管理
     $router->post('/tp','WeixinTpController@formTest');//群发管理
     $router->post('/fs','WeixinController@formFs');//互聊
-    $router->post('/hll','WeixinController@formHl');//互聊
-    $router->post('/fll','WeixinController@wx');//互聊
+    $router->post('/weixin/userinfo/hll','WeixinController@formHl');//互聊
+    $router->post('/weixin/userinfo/fll','WeixinController@wx');//互聊
     $router->get('/weixin/userinfo/create?user_id={$user_id}','WeixinController@create');
 });
