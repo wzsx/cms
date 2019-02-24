@@ -80,7 +80,7 @@ $data=WeixinUser::where(['id'=>$user_id])->first();
         return $content
             ->header('Create')
             ->description('description')
-            ->body(view('weixin.userchat',['user_info'=>$udata])->render());
+            ->body(view('weixin.userchat',['user_info'=>$data])->render());
     }
 
     /**
