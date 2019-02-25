@@ -18,9 +18,11 @@
                 <input type="hidden" class="openid" value="{{$user_info['openid']}}">
                 <input type="hidden" class="nickname" value="{{$user_info['nickname']}}">
                 <tr>
-                    <td>请输入：<input type="text" id="weixin"></td>
+                    <td>请输入:</td>
+                    <td><input type="text" id="weixin"></td>
                 </tr>
                 <tr>
+                    <td></td>
                     <td>
                         <input type="button" class="btn btn-default" id="test" value="发送">
                     </td>
