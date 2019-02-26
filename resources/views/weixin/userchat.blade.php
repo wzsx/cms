@@ -36,9 +36,7 @@
         $('#test').click(function() {
             _this=$(this);
             var weixin=$('#weixin').val();
-            //console.log(weixin);
             var openid=$('.openid').val();
-            //console.log(show_id);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -82,9 +80,7 @@
 
                     $('#content').append(_weixinnew)
                 })
-                /* console.log(res.recorddata);
-                 _newcontent=res.recorddata;
-                 $('#content').html(_newcontent);*/
+
             }
         })
     },1000)
