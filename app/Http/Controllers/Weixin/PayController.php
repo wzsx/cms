@@ -20,8 +20,8 @@ class PayController extends Controller
 
         //
         $total_fee = 1;         //用户要支付的总金额
-        //$order_id = OrderModel::generateOrderSN();
-        $order_id=190683217540742;
+        $order_id = OrderModel::generateOrderSN();
+        //$order_id=190683217540742;
         $order_info = [
             'appid'         =>  env('WEIXIN_APPID_0'),      //微信支付绑定的服务号的APPID
             'mch_id'        =>  env('WEIXIN_MCH_ID'),       // 商户ID
