@@ -70,33 +70,33 @@ class PayController extends Controller
         return $xml;
     }
 
-//    private  function postXmlCurl($xml, $url, $useCert = false, $second = 30)
-//    {
-//        $ch = curl_init();
-//        //设置超时
-//        curl_setopt($ch, CURLOPT_TIMEOUT, $second);
-//        curl_setopt($ch,CURLOPT_URL, $url);
-//        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
-//        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
-//        //设置header
-//        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-//        //要求结果为字符串且输出到屏幕上
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-//        //post提交方式
-//        curl_setopt($ch, CURLOPT_POST, TRUE);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-//        //运行curl
-//        $data = curl_exec($ch);
-//        //返回结果
-//        if($data){
-//            curl_close($ch);
-//            return $data;
-//        } else {
-//            $error = curl_errno($ch);
-//            curl_close($ch);
-//            die("curl出错，错误码:$error");
-//        }
-//    }
+    private  function postXmlCurl($xml, $url, $useCert = false, $second = 30)
+    {
+        $ch = curl_init();
+        //设置超时
+        curl_setopt($ch, CURLOPT_TIMEOUT, $second);
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
+        //设置header
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        //要求结果为字符串且输出到屏幕上
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        //post提交方式
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+        //运行curl
+        $data = curl_exec($ch);
+        //返回结果
+        if($data){
+            curl_close($ch);
+            return $data;
+        } else {
+            $error = curl_errno($ch);
+            curl_close($ch);
+            die("curl出错，错误码:$error");
+        }
+    }
 
 
     public function SetSign()
