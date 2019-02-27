@@ -18,13 +18,13 @@ class IndexController extends Controller
     {
         echo __METHOD__;
     }
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            $this->uid = session()->get('uid');
-            return $next($request);
-        });
-    }
+//    public function __construct()
+//    {
+//        $this->middleware(function ($request, $next) {
+//            $this->uid = session()->get('uid');
+//            return $next($request);
+//        });
+//    }
 
     /**
      * 下单
@@ -33,6 +33,7 @@ class IndexController extends Controller
     {
         //查询购物车商品
         $cart_goods = CartModel::where(['uid'=>session()->get('uid')])->orderBy('id','desc')->get()->toArray();
+        //print_r($cart_goods);
         if(empty($cart_goods)){
             die("购物车中无商品");
         }

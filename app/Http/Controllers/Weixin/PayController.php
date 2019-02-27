@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Weixin\WXBizDataCryptController;
 use App\Model\OrderModel;
-use App\Libs;
+//header('Content-Type:image/png');
 class PayController extends Controller
 {
     //
@@ -14,13 +14,24 @@ class PayController extends Controller
     public $weixin_unifiedorder_url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
     public $weixin_notify_url = 'http://xiuge.52self.cn/weixin/pay/notice';     //支付通知回调
 
-    public function test()
+    public function test($oid)
     {
+        //验证订单状态 是否已支付 是否是有效订单
+        $order = OrderModel::where(['oid'=>$oid])->first();
+
+        //判断订单是否已被支付
+        if($order['is_pay']==1){
+            die("订单已支付，请勿重复支付");
+        }
+        //判断订单是否已被删除
+        if($order['is_delete']==1){
+            die("订单已被删除，无法支付");
+        }
 
 
         //
         $total_fee = 1;         //用户要支付的总金额
-        $order_id = OrderModel::generateOrderSN();
+        //$order_id = OrderModel::generateOrderSN();
         //$order_id=190683217540742;
         $order_info = [
             'appid'         =>  env('WEIXIN_APPID_0'),      //微信支付绑定的服务号的APPID
@@ -28,7 +39,8 @@ class PayController extends Controller
             'nonce_str'     => str_random(16),             // 随机字符串
             'sign_type'     => 'MD5',
             'body'          => '云韵订单-'.mt_rand(1111,9999) . str_random(6),
-            'out_trade_no'  => $order_id,                       //本地订单号
+            //'out_trade_no'  => $order_id,                       //本地订单号
+            'out_trade_no'  =>$order['order_sn'],
             'total_fee'     => $total_fee,
             'spbill_create_ip'  => $_SERVER['REMOTE_ADDR'],     //客户端IP
             'notify_url'    => $this->weixin_notify_url,        //通知回调地址
@@ -163,7 +175,19 @@ class PayController extends Controller
 
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
+                //更新订单状态
+                $order_sn =$xml->out_trade_no;
+                $data = [
+                    'is_pay' => 1,       //支付状态  1未支付 2已支付
+                    'pay_time'=>time()
+                    ];
+                $where=[
+                    'order_sn' =>$order_sn
+                ];
+                //商户订单号
 
+                //  file_put_contents('logs/alipay.log',$info,FILE_APPEND);
+                $res=OrderModel::where($where)->update($data);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];

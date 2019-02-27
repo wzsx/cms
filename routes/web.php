@@ -159,5 +159,5 @@ Route::get('/weixin/chat/get_msg','Weixin\WeixinController@getChatMsg');     //�
 //微信支付
 Route::get('/weixin/pay/test','Weixin\PayController@test');     //微信支付测试
 Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支付通知回调
-Route::get('/pay/o/{oid}','Pay\AlipayController@pay')->middleware('check.login.token');         //订单支付
+Route::get('/weixin/o/{oid}','Weixin\PayController@test')->middleware('check.login.token');         //订单支付
 

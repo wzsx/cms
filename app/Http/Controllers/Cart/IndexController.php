@@ -16,10 +16,10 @@ class IndexController extends Controller
 
     public function __construct()
     {
-//        $this->middleware(function ($request, $next) {
-//            $this->uid = session()->get('uid');
-//            return $next($request);
-//        });
+        $this->middleware(function ($request, $next) {
+            $this->uid = session()->get('uid');
+            return $next($request);
+        });
 
     }
 
