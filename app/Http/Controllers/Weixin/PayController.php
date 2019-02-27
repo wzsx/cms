@@ -179,7 +179,8 @@ class PayController extends Controller
                 $order_sn =$xml->out_trade_no;
                 $data = [
                     'is_pay' => 1,       //支付状态  1已支付 0未支付
-                    'pay_time'=>time()
+                    'pay_time'=>time(),
+                    'plat'          => 1,      //平台编号 1支付宝 2微信
                     ];
                 $where=[
                     'order_sn' =>$order_sn
