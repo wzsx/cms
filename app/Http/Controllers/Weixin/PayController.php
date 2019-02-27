@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Weixin\WXBizDataCryptController;
 use App\Model\OrderModel;
-
+use App\Libs;
 class PayController extends Controller
 {
     //
@@ -44,9 +44,14 @@ class PayController extends Controller
         $rs = $this->postXmlCurl($xml, $this->weixin_unifiedorder_url, $useCert = false, $second = 30);
         //var_dump($rs);exit;
         $data =  simplexml_load_string($rs);
-        echo 'code_url: '.$data->code_url;echo '<br>';
+       $url=$data->code_url;
+       $arr=[
+           'url'=>$url
+       ];
+
         //echo $data->code_url;
         //将 code_url 返回给前端，前端生成 支付二维码
+        return view("weixin.erma",$arr);
 
     }
 
