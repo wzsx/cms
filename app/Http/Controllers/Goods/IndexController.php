@@ -43,23 +43,23 @@ class IndexController extends Controller
         //echo '<pre>';print_r($list);echo '</pre>';die;
         return view('goods.list',$data);
     }
-    /*
-     *文件上传
-     */
-    public function uploadIndex()
-    {
-        return view('goods.upload');
-    }
-    public function uploadPDF(Request $request)
-    {
-        $pdf = $request->file('pdf');
-        $ext = $pdf->extension();
-        if($ext !='pdf'){
-            die("请上传PDF格式");
-        }
-        $res =$pdf->storeAs(date('Ymd'),str_random(5).'.pdf');
-        if($res){
-            echo '上传成功';
-        }
-    }
+//    /*
+//     *文件上传
+//     */
+//    public function uploadIndex()
+//    {
+//        return view('goods.upload');
+//    }
+//    public function uploadPDF(Request $request)
+//    {
+//        $pdf = $request->file('pdf');
+//        $ext = $pdf->extension();
+//        if($ext !='pdf'){
+//            die("请上传PDF格式");
+//        }
+//        $res =$pdf->storeAs(date('Ymd'),str_random(5).'.pdf');
+//        if($res){
+//            echo '上传成功';
+//        }
+//    }
 }

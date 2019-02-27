@@ -12,15 +12,18 @@ use App\Model\OrderModel;
 use Illuminate\Support\Facades\Auth;
 class IndexController extends Controller
 {
-    //
-    public function  __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function index()
     {
         echo __METHOD__;
+    }
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->uid = session()->get('uid');
+            return $next($request);
+        });
     }
 
     /**

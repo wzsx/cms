@@ -67,12 +67,6 @@ Route::any('/test/abc','Test\TestController@abc');
 
 Route::get('/view/test1','Test\TestController@viewtest1');
 Route::get('/view/test2','Test\TestController@viewtest2');
-////用户注册
-Route::get('/userreg','Test\TestController@reg');
-Route::post('/userreg','Test\TestController@toReg');
-////用户登录
-Route::get('/userup','Test\TestController@users');
-Route::post('/userup','Test\TestController@userAdd');
 
 //用户注册
 Route::get('/user/reg','User\UserController@reg');
@@ -110,6 +104,7 @@ Route::post('/cart/add2','Cart\IndexController@add2')->middleware('check.login.t
 Route::get('/cart/del2/{goods_id}','Cart\IndexController@del2')->middleware('check.login.token');      //删除商品
 
 //商品
+Route::get('/goods/list','Goods\IndexController@goodsList');          //商品列表
 Route::get('/goods/{goods_id}','Goods\IndexController@index');          //商品详情
 
 
@@ -118,7 +113,7 @@ Route::get('/order/add','Order\IndexController@add');           //下单
 Route::get('/order/list','Order\IndexController@orderList');           //订单列表
 
 //支付
-Route::get('/pay/o/{oid}','Pay\AlipayController@pay')->middleware('check.login.token');         //订单支付
+Route::get('/pay/o/{oid}','Pay\AlipayController@pay');        //订单支付
 Route::get('/pay/alipay/test','Pay\AlipayController@test');         //测试
 Route::post('/pay/alipay/notify','Pay\AlipayController@aliNotify');        //支付宝支付 异步通知回调
 Route::get('/pay/alipay/return','Pay\AlipayController@aliReturn');        //支付宝支付 同步通知回调
@@ -133,16 +128,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/upload','Goods\IndexController@uploadIndex');
 Route::post('/goods/upload/pdf','Goods\IndexController@uploadPDF');
 
-//用户注册
-Route::get('/users/regs','Users\UsersController@regs');
-Route::post('/users/regs','Users\UsersController@doRegs');
-//用户登录
-Route::get('/users/login','Users\UsersController@login');
-Route::post('/users/login','Users\UsersController@doLogin');
-Route::get('/users/center','Users\UsersController@center')->middleware('check.login.token');
-//用户修改密码
-Route::get('/users/upass','Users\UsersController@upass');
-Route::post('/users/upass','Users\UsersController@doUpass');
 //座位号
 Route::get('/seat/seat','Seat\SeatController@seat');
 
