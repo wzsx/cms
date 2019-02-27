@@ -178,7 +178,7 @@ class PayController extends Controller
                 //更新订单状态
                 $order_sn =$xml->out_trade_no;
                 $data = [
-                    'is_pay' => 1,       //支付状态  1未支付 2已支付
+                    'is_pay' => 1,       //支付状态  1已支付 0未支付
                     'pay_time'=>time()
                     ];
                 $where=[
