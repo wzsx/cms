@@ -85,4 +85,19 @@ class IndexController extends Controller
         ];
         return view('orders.list',$data);
     }
+    /*
+  * 订单删除
+  * */
+    public function del($abc){
+        $rs = OrderModel::where(['uid'=>$this->uid,'id'=>$abc])->delete();
+        //echo '商品ID:  '.$abc . ' 删除成功1';
+        if($rs){
+            echo '订单ID:  '.$abc . ' 删除成功1';
+            header("Refresh:3;url=/order/list");
+        }else{
+            echo '订单ID:  '.$abc . ' 删除成功2';
+        }
+    }
+
+
 }

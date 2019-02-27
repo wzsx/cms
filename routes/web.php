@@ -111,6 +111,8 @@ Route::get('/goods/{goods_id}','Goods\IndexController@index');          //商品
 //订单
 Route::get('/order/add','Order\IndexController@add');           //下单
 Route::get('/order/list','Order\IndexController@orderList');           //订单列表
+Route::get('/order/del/{id}','Order\IndexController@del');                      //删除
+
 
 //支付
 Route::get('/pay/o/{oid}','Pay\AlipayController@pay');        //订单支付
