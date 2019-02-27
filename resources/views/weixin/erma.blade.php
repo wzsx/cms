@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <div id="qrcode"></div>
-    <script type="text/javascript" src="/js/qrcode/qrcode.js"></script>
+    <script type="text/javascript" src="/js/qrcode/qrcode.min.js"></script>
 </head>
 <body>
 
