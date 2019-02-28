@@ -525,7 +525,7 @@ class WeixinController extends Controller
     /**
      * 接收code
      */
-    public function getCode()
+    public function getCode(Request $request)
     {
 //        echo '<pre>';print_r($_GET);echo '</pre>';
 //        $code = $_GET['code'];
@@ -558,6 +558,11 @@ class WeixinController extends Controller
             ];
             var_dump($updatedate);
             WxUserModel::where($usersWhere)->update($updatedate);
+            $user_id=$res['id'];
+            $request->session()->put('id',$user_id);
+            header('refresh:2;url=/user/center');
+
+
         }else{
             $WeixinDate=[
                 'nickname'=>$user_arr['nickname'],
@@ -569,7 +574,10 @@ class WeixinController extends Controller
                 'addtime'=>time()
             ];
             var_dump($user_arr);
-            $use_id=WxUserModel::insertGetId($WeixinDate);
+            $user_id=WxUserModel::insertGetId($WeixinDate);
+
+            $request->session()->put('id',$user_id);
+            header('refresh:2;url=/user/center');
 
         }
 
