@@ -74,7 +74,7 @@ Route::post('/user/reg','User\UserController@doReg');
 
 Route::get('/user/login','User\UserController@login');           //用户登录
 Route::post('/user/login','User\UserController@doLogin');        //用户登录
-Route::get('/user/center','User\UserController@center')->middleware('check.login.token');;        //个人中心
+Route::get('/user/center','User\UserController@center');      //个人中心
 
 
 //模板引入静态文件
