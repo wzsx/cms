@@ -549,7 +549,6 @@ class WeixinController extends Controller
             //用户已存在
             $updatedate = [
                 'openid' => $user_arr['openid'],
-                'time' => $user_arr['add_time'],
                 'nickname' => $user_arr['nickname'],
                 'sex' => $user_arr['sex'],
                 'language' => $user_arr['language'],
