@@ -558,7 +558,7 @@ class WeixinController extends Controller
                 'uptime' => time()
             ];
             var_dump($updatedate);
-            WxUserModel::where($usersWhere)->update($updatedate);
+            WxUserModel::where('$usersWhere')->update($updatedate);
         }else{
             $WeixinDate=[
                 'nickname'=>$user_arr['nickname'],
