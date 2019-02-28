@@ -538,5 +538,26 @@ class WeixinController extends Controller
         echo $this->getWXAccessToken();
     }
 
+/**
+ * 微信登录
+ */
+//    public function login(){
+//        $url="";
+//          $r=urlencode;
+//    }
+    public function login()
+    {
+        return view('weixin.login');
+    }
 
+    /**
+     * 接收code
+     */
+    public function getCode()
+    {
+        echo '<pre>';print_r($_GET);echo '</pre>';
+        $code = $_GET['code'];
+        echo 'code: '.$code;
+    }
 }
+
