@@ -10,6 +10,7 @@ use GuzzleHttp;
 use App\Model\WeixinChatModel;
 use Illuminate\Support\Facades\Storage;
 use App\Model\WeixinMedia;
+use App\Model\WxUserModel;
 class WeixinController extends Controller
 {
     //
@@ -265,10 +266,7 @@ class WeixinController extends Controller
      */
     public function validToken()
     {
-        //$get = json_encode($_GET);
-        //$str = '>>>>>' . date('Y-m-d H:i:s') .' '. $get . "<<<<<\n";
-        //file_put_contents('logs/weixin.log',$str,FILE_APPEND);
-        //echo $_GET['echostr'];
+
         $data = file_get_contents("php://input");
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
@@ -301,12 +299,9 @@ class WeixinController extends Controller
      */
     public function getUserInfo($openid)
     {
-        //$openid = 'oLreB1jAnJFzV_8AGWUZlfuaoQto';
         $access_token = $this->getWXAccessToken();
         $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
-
         $data = json_decode(file_get_contents($url),true);
-        //echo '<pre>';print_r($data);echo '</pre>';
         return $data;
     }
     /*
@@ -374,16 +369,11 @@ class WeixinController extends Controller
                 ],
             ]
         ]);
-
         $body = $response->getBody();
         echo $body;echo '<hr>';
         $d = json_decode($body,true);
         echo '<pre>';print_r($d);echo '</pre>';
-
-
     }
-
-
     /**
      * 获取永久素材列表
      */
@@ -403,31 +393,22 @@ class WeixinController extends Controller
         $response = $client->request('POST', $url, [
             'body' => json_encode($body)
         ]);
-
         $body = $response->getBody();
         echo $body;echo '<hr>';
         $arr = json_decode($response->getBody(),true);
         echo '<pre>';print_r($arr);echo '</pre>';
-
-
     }
 
     public function formShow()
     {
-
         return view('weixin.weixin');
-
     }
 
     public function formTest(Request $request)
     {
-        //echo '<pre>';print_r($_POST);echo '</pre>';echo '<hr>';
-        //echo '<pre>';print_r($_FILES);echo '</pre>';echo '<hr>';
-
         //保存文件
         $img_file = $request->file('media');
         //echo '<pre>';print_r($img_file);echo '</pre>';echo '<hr>';
-
         $img_origin_name = $img_file->getClientOriginalName();
         echo 'originName: '.$img_origin_name;echo '</br>';
         $file_ext = $img_file->getClientOriginalExtension();          //获取文件扩展名
@@ -438,7 +419,6 @@ class WeixinController extends Controller
         echo 'new_file_name: '.$new_file_name;echo '</br>';
 
         //文件保存路径
-
 
         //保存文件
         $save_file_path = $request->media->storeAs('form_test',$new_file_name);       //返回保存成功之后的文件路径
@@ -527,8 +507,6 @@ class WeixinController extends Controller
         die( json_encode($response));
 
     }
-
-
     /**
      * 刷新access_token
      */
@@ -537,7 +515,6 @@ class WeixinController extends Controller
         Redis::del($this->redis_weixin_access_token);
         echo $this->getWXAccessToken();
     }
-
 /**
  * 微信登录
  */
@@ -545,7 +522,6 @@ class WeixinController extends Controller
     {
         return view('weixin.login');
     }
-
     /**
      * 接收code
      */
@@ -555,25 +531,49 @@ class WeixinController extends Controller
 //        $code = $_GET['code'];
 //        echo 'code: '.$code;
         $code = $_GET['code'];          // code
-
-        //2 用code换取access_token 请求接口
-
         $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code='.$code.'&grant_type=authorization_code';
         $token_json = file_get_contents($token_url);
         $token_arr = json_decode($token_json,true);
-        echo '<hr>';
-        echo '<pre>';print_r($token_arr);echo '</pre>';
-
         $access_token = $token_arr['access_token'];
         $openid = $token_arr['openid'];
-
-        // 3 携带token  获取用户信息
+        //   获取用户信息
         $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $user_json = file_get_contents($user_info_url);
-
         $user_arr = json_decode($user_json,true);
-        echo '<hr>';
-        echo '<pre>';print_r($user_arr);echo '</pre>';
+        //用户信息存入数据库
+        $usersWhere=[
+            'openid'=> $user_arr['openid'],
+        ];
+        $res=WxUserModel::where('$usersWhere')->first();
+        if($res) {
+            //用户已存在
+            $updatedate = [
+                'openid' => $user_arr['openid'],
+                'time' => $user_arr['add_time'],
+                'nickname' => $user_arr['nickname'],
+                'sex' => $user_arr['sex'],
+                'language' => $user_arr['language'],
+                'headimgurl' => $user_arr['headimgurl'],
+                'unionid' => $user_arr['unionid'],
+                'uptime' => time()
+            ];
+            var_dump($updatedate);
+            WxUserModel::where($usersWhere)->update($updatedate);
+        }else{
+            $WeixinDate=[
+                'nickname'=>$user_arr['nickname'],
+                'sex'=>$user_arr['sex'],
+                'language'=>$user_arr['language'],
+                'headimgurl'=>$user_arr['headimgurl'],
+                'unionid'=>$user_arr['unionid'],
+                'openid'=>$user_arr['openid'],
+                'addtime'=>time()
+            ];
+            var_dump($user_arr);
+            $use_id=WxUserModel::insertGetId($WeixinDate);
+
+        }
+
     }
 
 }
