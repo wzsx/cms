@@ -544,7 +544,7 @@ class WeixinController extends Controller
         $usersWhere=[
             'openid'=> $user_arr['openid'],
         ];
-        $res=WxUserModel::where('$usersWhere')->first();
+        $res=WxUserModel::where($usersWhere)->first();
         if($res) {
             //用户已存在
             $updatedate = [
@@ -557,7 +557,7 @@ class WeixinController extends Controller
                 'uptime' => time()
             ];
             var_dump($updatedate);
-            WxUserModel::where('$usersWhere')->update($updatedate);
+            WxUserModel::where($usersWhere)->update($updatedate);
         }else{
             $WeixinDate=[
                 'nickname'=>$user_arr['nickname'],
