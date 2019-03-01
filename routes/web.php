@@ -165,3 +165,5 @@ Route::get('/weixin/o/{oid}','Weixin\PayController@test')->middleware('check.log
 
 Route::get('/weixin/login','Weixin\WeixinController@login');        //微信登录
 Route::get('/weixin/getcode','Weixin\WeixinController@getCode');        //接收code
+
+Route::get('/weixin/jssdk','Weixin\WeixinController@jssdktest');    //微信安全域名
