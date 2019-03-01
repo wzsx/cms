@@ -589,15 +589,17 @@ class WeixinController extends Controller
             'appid' => env('WEIXIN_APPID'),        //APPID
             'timestamp' => time(),
             'noncestr'    => str_random(10),
-            'sign'      => $this->wxJsConfigSign()
+            //'sign'      => $this->wxJsConfigSign()
         ];
-
+            $sign = $this->wxJsConfigSign($jsconfig);
+            $jsconfig['sign'] = $sign;
         $data = [
             'jsconfig'  => $jsconfig
         ];
         return view('weixin.jssdk',$data);
 
     }
+
 //    public function wxJsConfigSign(){
 //        $sign = str_random(15);
 //        return $sign;
