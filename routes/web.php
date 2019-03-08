@@ -173,3 +173,4 @@ Route::get('/weixin/yk','Weixin\WxykController@yk');
 Route::get('/weixin/ddd','Weixin\WxykController@ddd');
 Route::get('/weixin/ccc','Weixin\WxykController@ccc');
 Route::get('/weixin/token','Weixin\WxykController@token'); //token
+Route::get('/weixin/createss','Weixin\WxykController@createss');

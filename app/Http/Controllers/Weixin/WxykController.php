@@ -43,7 +43,7 @@ class WxykController extends Controller
         echo $this->getWXAccessToken();
     }
     //自定义菜单
-    public function createMenu(){
+    public function createss(){
         //1 获取access_token 拼接请求接口
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->getWXAccessToken();
         //2 请求微信接口
