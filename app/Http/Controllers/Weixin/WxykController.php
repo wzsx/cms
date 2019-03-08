@@ -14,6 +14,12 @@ class WxykController extends Controller
     public function yk(){
         return view ("weixin.yk");
     }
+    public function ddd(){
+        return view ("weixin.ddd");
+    }
+    public function ccc(){
+        return view ("weixin.ccc");
+    }
     public function getWXAccessToken()
     {
 
@@ -36,7 +42,51 @@ class WxykController extends Controller
         Redis::del($this->redis_weixin_access_token);
         echo $this->getWXAccessToken();
     }
-    public function ddd(){
-        return view ("weixin.ddd");
+    //自定义菜单
+    public function createMenu(){
+        //1 获取access_token 拼接请求接口
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->getWXAccessToken();
+        //2 请求微信接口
+        $client = new GuzzleHttp\Client(['base_uri' => $url]);
+
+        $data = [
+            "button"    => [
+                [
+                    "name"=>"秀歌",
+                    "sub_button"=>[
+                        [
+                            "type"  => "click",      // click类型
+                            "name"  => "阴雨天",
+                            "key"   => "kefu01"
+                        ]
+                    ]
+                ],
+                [
+                    "name"=>"XXX",
+                    "sub_button"=>[
+                        [
+                            "type"  => "view",      // view类型 跳转指定 URL
+                            "name"  => "BBY",
+                            "url"   => "http://xiuge.52self.cn/weixin/yk"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+
+        $r = $client->request('POST', $url, [
+            'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
+        ]);
+        // 3 解析微信接口返回信息
+
+        $response_arr = json_decode($r->getBody(),true);
+        if($response_arr['errcode'] == 0){
+            echo "菜单创建成功";
+        }else{
+            echo "菜单创建失败，请重试";echo '</br>';
+            echo $response_arr['errmsg'];
+        }
     }
+
 }

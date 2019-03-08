@@ -171,4 +171,5 @@ Route::get('/weixin/jssdk','Weixin\WeixinController@jssdktest');    //微信安�
 //月考
 Route::get('/weixin/yk','Weixin\WxykController@yk');
 Route::get('/weixin/ddd','Weixin\WxykController@ddd');
+Route::get('/weixin/ccc','Weixin\WxykController@ccc');
 Route::get('/weixin/token','Weixin\WxykController@token'); //token
