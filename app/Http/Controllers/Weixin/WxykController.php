@@ -66,7 +66,7 @@ class WxykController extends Controller
                     "sub_button"=>[
                         [
                             "type"  => "view",      // view类型 跳转指定 URL
-                            "name"  => "BBY",
+                            "name"  => "发布",
                             "url"   => "http://xiuge.52self.cn/weixin/yk"
                         ]
                     ]
