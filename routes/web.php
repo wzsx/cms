@@ -167,3 +167,8 @@ Route::get('/weixin/login','Weixin\WeixinController@login');        //微信登�
 Route::get('/weixin/getcode','Weixin\WeixinController@getCode');        //接收code
 
 Route::get('/weixin/jssdk','Weixin\WeixinController@jssdktest');    //微信安全域名
+
+//月考
+Route::get('/weixin/yk','Weixin\WxykController@yk');
+Route::get('/weixin/ddd','Weixin\WxykController@ddd');
+Route::get('/weixin/token','Weixin\WxykController@token'); //token
