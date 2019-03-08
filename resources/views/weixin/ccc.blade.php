@@ -1,3 +1,4 @@
+<form  action="/weixin/createss" method="post" enctype="multipart/form-data" >
 <table>
     <script src="/js/jquery-1.12.4.min.js"></script>
     <tr>
@@ -9,19 +10,9 @@
                 <option value="">二级按钮</option>
             </select>
         二级按钮名字:<input type="text">二级按钮url:<input type="text">二级按钮名字key:<input type="text"><input type="button" value="克隆" style="width: 50px;" class="btn1"></td></tr>
-    {{--<tr>--}}
-    {{--</tr>--}}
-    {{--<tr>--}}
-        {{----}}
-    {{--</tr>--}}
-    {{--<tr>--}}
-        {{----}}
-    {{--</tr>--}}
-    {{--<tr>--}}
-        {{----}}
-    {{--</tr>--}}
+    <button type="submit" class="btn btn-default">发布</button>
 </table>
-
+</form>
 <script>
     $(function(){
         $(document).on('click','.btn',function(){
