@@ -41,4 +41,20 @@ class IndexController extends Controller
         echo '支付成功，正在跳转';
 
     }
+    public function hb5(){
+        $value=$_POST['value'];
+        if($value){
+            $data=[
+                'errcode'=>4001,
+                'errmsg'=>'ok'
+            ];
+        }else{
+            $data=[
+                'errcode'=>5001,
+                'errmsg'=>'error'
+            ];
+        }
+        return $data;
+      }
+      
 }
