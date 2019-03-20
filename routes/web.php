@@ -176,4 +176,5 @@ Route::get('/weixin/token','Weixin\WxykController@token'); //token
 Route::get('/weixin/createss','Weixin\WxykController@createss');
 
 Route::get('/weixin/password','Weixin\ApiController@password');
-Route::post('/hb5','Pay\IndexController@hb5');
+Route::post('/user','Pay\IndexController@doReg');
+Route::post('/login','Pay\IndexController@login');
