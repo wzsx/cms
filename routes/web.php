@@ -180,3 +180,6 @@ Route::get('/weixin/password','Weixin\ApiController@password');
 
 Route::post('/user/hb','Pay\IndexController@doReg');
 Route::post('/login/hb5','Pay\IndexController@doLogin');
+
+Route::post('/vip/hb','vip\vip@doReg');
+Route::post('/vip/hb5','vip\vip@doLogin');
