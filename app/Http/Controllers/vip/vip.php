@@ -5,7 +5,9 @@ namespace App\Http\Controllers\vip;
 use Illuminate\Http\Request;
 use App\Model\Cmsmodel;
 use App\Http\Controllers\Controller;
-
+use App\Model\UserModel;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 class vip extends Controller
 {
     //
