@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-    echo date('Y-m-d H:i:s' );
+    //echo date('Y-m-d H:i:s' );
     //echo '<pre>';print_r($_COOKIE);echo '</pre>';
-    //return view('welcome');
+    return view('welcome');
 });
 Route::group([
     'prefix'    => '/admin/',
