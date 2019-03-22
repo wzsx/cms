@@ -62,6 +62,7 @@ class IndexController extends Controller{
          //执行命令
          $r2 = curl_exec($curl);
          $re2=json_decode($r2,true);
+         return $re2;
        }
     }
     
