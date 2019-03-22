@@ -39,6 +39,27 @@ class IndexController extends Controller{
         }
             return $response;
     }
+
+
+    public function apiLogin(Request $request){
+        $email=$request->input('email');
+        $password=$request->input('pass');
+        $data =[
+            'email' =>$email,
+            'pass'  =>$password
+        ];
+        $url='http://pass.52xiuge.com/pss';
+        $ch =curl_init($url);
+        curl_setopt($ch,CURLOPT_HEADER,0);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_POST,1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $response =json_decode($response,true);
+    
+        return $response;
+       }
     }
 
 
