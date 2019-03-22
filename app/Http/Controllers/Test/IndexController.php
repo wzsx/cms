@@ -2,7 +2,9 @@
 namespace App\Http\Controllers\Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Model\UserModel;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Redis;
 class IndexController extends Controller{
     public function index(Request $request){
         $current_url ='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
