@@ -185,5 +185,5 @@ Route::post('/vip/hb','vip\vip@doReg');
 Route::post('/vip/hb5','vip\vip@doLogin');
 
 Route::get('/','Test/IndexController@index');
-Route::post('/pss','Test\TestController@pss'); 
+Route::post('/pss','Test\IndexController@pss'); 
 
