@@ -19,7 +19,7 @@ class IndexController extends Controller{
         $pass=$_POST['pass'];
         $email=$_POST['email'];
         $id = UserModel::where(['email'=>$email])->first();
-        if(password_verify($pass,$id->pwd)){
+        if(password_verify($pass,$id->pass)){
             $token = substr(md5(time().mt_rand(1,99999)),10,10);
             setcookie('token',$token,time()+86400,'/','xiuge.52self.cn',false,true);
             setcookie('uid',$id->uid,time()+86400,'/','xiuge.52self.cn',false,true);
