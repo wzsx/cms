@@ -63,7 +63,7 @@ class IndexController extends Controller{
          $r2 = curl_exec($curl);
          $re2=json_decode($r2,true);
          return $re2;
-         var_dump ($re2);die;
+         var_dump($re2);die;
        }
     }
     
