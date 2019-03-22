@@ -49,7 +49,7 @@ class IndexController extends Controller{
             'email' =>$email,
             'pass'  =>$password
         ];
-        var_dump($data);die;
+        //var_dump($data);die;
         $url='http://pass.52xiuge.com/pss';
         $curl = curl_init();
         //设置抓取的url
