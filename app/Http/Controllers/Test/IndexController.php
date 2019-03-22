@@ -49,18 +49,23 @@ class IndexController extends Controller{
             'pass'  =>$password
         ];
         $url='http://pass.52xiuge.com/pss';
-        $ch =curl_init($url);
-        curl_setopt($ch,CURLOPT_HEADER,0);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch,CURLOPT_POST,1);
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $response =json_decode($response,true);
-    
-        return $response;
+        $curl = curl_init();
+        //设置抓取的url
+          curl_setopt($curl, CURLOPT_URL, $url);
+         //设置头文件的信息作为数据流输出
+          curl_setopt($curl, CURLOPT_HEADER, 0);
+          //设置获取的信息以文件流的形式返回，而不是直接输出。
+          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+         //设置post方式提交
+         curl_setopt($curl, CURLOPT_POST, 1);
+         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+         //执行命令
+         $r2 = curl_exec($curl);
+         $re2=json_decode($r2,true);
        }
     }
+    
+
 
 
 ?>
