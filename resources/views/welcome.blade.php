@@ -71,7 +71,7 @@
             @auth
                 <a href="{{ url('/home') }}">Home</a>
             @else
-                <a href="http://pass.com/pass/login">Login</a>
+                <a href="http://pass.com/pass/login">登录</a>
                 <a href="{{ route('register') }}">Register</a>
             @endauth
         </div>

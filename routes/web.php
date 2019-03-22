@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    //echo date('Y-m-d H:i:s' );
-    //echo '<pre>';print_r($_COOKIE);echo '</pre>';
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     //echo date('Y-m-d H:i:s' );
+//     //echo '<pre>';print_r($_COOKIE);echo '</pre>';
+//     return view('welcome');
+// });
 Route::group([
     'prefix'    => '/admin/',
 ],function(){
@@ -183,3 +183,6 @@ Route::post('/login/hb5','Pay\IndexController@doLogin');
 
 Route::post('/vip/hb','vip\vip@doReg');
 Route::post('/vip/hb5','vip\vip@doLogin');
+
+Route::get('/','Test/IndexController@index');
+
