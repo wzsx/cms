@@ -56,7 +56,7 @@ class IndexController extends Controller{
             'pass2' =>$pass2
         ];
         //var_dump($data);die;
-        $url='http://pass.52xiuge.com/pss';
+        $url='http://pass.52xiuge.com/reg';
         $curl = curl_init();
         //设置抓取的url
           curl_setopt($curl, CURLOPT_URL, $url);
@@ -84,7 +84,7 @@ class IndexController extends Controller{
             'pass'  =>$password
         ];
         //var_dump($data);die;
-        $url='http://pass.52xiuge.com/reg';
+        $url='http://pass.52xiuge.com/pss';
         $curl = curl_init();
         //设置抓取的url
           curl_setopt($curl, CURLOPT_URL, $url);
