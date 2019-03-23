@@ -50,10 +50,10 @@ class IndexController extends Controller{
         $age=$request->input('age');
         $data =[
             'email' =>$email,
-            'pass'  =>$password,
+            'pass'  =>$pass,
             'nick_name' =>$nick_name,
             'age'   =>$age,
-            'pass2' =>$password1
+            'pass2' =>$pass2
         ];
         //var_dump($data);die;
         $url='http://pass.52xiuge.com/pss';
