@@ -105,7 +105,7 @@ class IndexController extends Controller{
 
        
        public function center(Request $request){
-        $id=$_POST['id'];
+        $id=$_POST['uid'];
         $token=$_POST['token'];
 //        $data=[
 //            'token'=>$token,
