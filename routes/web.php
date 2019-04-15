@@ -189,4 +189,9 @@ Route::post('/pss','Test\IndexController@pss');
 Route::post('/apilogin','Test\IndexController@apiLogin');
 Route::post('/apireg','Test\IndexController@apireg');
 Route::post('/apicenter','Test\IndexController@center');
+Route::get('/openssl','Openssl\OpensslController@openssl');
+Route::get('/openssl/index','Openssl\OpensslController@index');
+
+Route::get('/show','Show\ShowController@show');
+Route::get('/uploadinfo','Show\ShowController@uploadinfo');
 
