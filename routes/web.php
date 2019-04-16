@@ -195,3 +195,6 @@ Route::get('/openssl/index','Openssl\OpensslController@index');
 Route::get('/show','Show\ShowController@show');
 Route::get('/uploadinfo','Show\ShowController@uploadinfo');
 
+Route::post('/logins','App\AppController@logins');
+Route::post('/token','App\AppController@token');
+
