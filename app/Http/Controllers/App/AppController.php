@@ -98,7 +98,7 @@ class AppController extends Controller
         for($i=0;$i<100-$useToken;$i++){
             $num=rand(100,100000).time();
             $token=md5($num);
-            $start=rand(0.10);
+            $start=rand(0,10);
             $end=rand(11,32);
             $token=substr($token,$start,$end);
             Redis::sadd($key,$token);
