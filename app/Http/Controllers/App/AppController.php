@@ -104,5 +104,14 @@ class AppController extends Controller
             Redis::sadd($key,$token);
         }
     }
+    public function regs(Request $request){
+        $name=$request->input('name');
+        $pass=$request->input('pass');;
+        $data =[
+            'name' =>$name,
+            'pass'  =>$pass,
+        ];
+        
+    }
 }
 ?>

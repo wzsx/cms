@@ -198,3 +198,6 @@ Route::get('/uploadinfo','Show\ShowController@uploadinfo');
 Route::post('/logins','App\AppController@logins');
 Route::post('/token','App\AppController@token');
 
+Route::get('/demo', 'Xm\XmController@demo');//访问登录页面
+Route::post('/demo2', 'Xm\XmController@demo2');//访问登录页面
+Route::get('/demo3', 'Xm\XmController@demo3');//访问登录页面
