@@ -24,16 +24,20 @@ class XmController extends Controller{
         $uid = $name;
 
         $key = 'token:' . $uid;
+
+        $token = Redis::get($key);
+
+    if(!empty($token)){
             $token = substr(md5(time() + $uid + rand(1000,9999)),10,20);
             Redis::del($key);
             Redis::set($key,$token);
-    header("refresh:0;/demo3?token=$token&uid=$uid");
+
+        }
+    header("refresh:0;/demo3?token=$token");
 }
 public function demo3(Request $request){
     $token=$request->input('token');
-    $uid=$request->input('uid');
-
-    $key = 'token:' . $uid;
+    $key = 'token:' . 123;
 
     $tokens = Redis::get($key);
     if($token!=$tokens){
