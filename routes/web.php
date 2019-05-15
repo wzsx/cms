@@ -184,7 +184,7 @@ Route::post('/login/hb5','Pay\IndexController@doLogin');
 Route::post('/vip/hb','vip\vip@doReg');
 Route::post('/vip/hb5','vip\vip@doLogin');
 
-Route::get('/','Test/IndexController@index');
+Route::get('/','Test\IndexController@index')->middleware('check.cookie');
 Route::post('/pss','Test\IndexController@pss'); 
 Route::post('/apilogin','Test\IndexController@apiLogin');
 Route::post('/apireg','Test\IndexController@apireg');
@@ -201,3 +201,6 @@ Route::post('/token','App\AppController@token');
 Route::get('/demo', 'Xm\XmController@demo');//访问登录页面
 Route::post('/demo2', 'Xm\XmController@demo2');//访问登录页面
 Route::get('/demo3', 'Xm\XmController@demo3');//访问登录页面
+
+Route::post('/passport','user\UserssController@login');
+Route::get('/app-login','user\UserssController@userl');

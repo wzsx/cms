@@ -15,9 +15,11 @@ class CheckCookie
      */
     public function handle($request,Closure $next){
         if(isset($_COOKIE['id'])&& isset($_COOKIE['token'])){
+//            print_r($_COOKIE['token']);
             $key ='str:u:web:'.$_COOKIE['id'];
             //print_r($key);die;
             $token =Redis::get($key);
+//            print_r($token);die;
             if($_COOKIE['token']==$token){
                 $request->attributes->add(['is_login'=>1]);
             }else{

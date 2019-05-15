@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>以晴</title>
+    <title>Laravel</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -67,15 +67,16 @@
 <body>
 <div class="flex-center position-ref full-height">
     <div class="top-right links">
-        @if($login==1)
-        <a href="{{ url('/home') }}">Home</a>
-@else
-        <!-- <a href="http://pass.com/login?redirect={{$current_url}}">登录</a> -->
-        <a href="http://pass.52xiuge.com/pass/userl?redirect={{$current_url}}">登录</a>
-        <a href="{{ route('register') }}">Register</a>
+        @if($res['is_login'==1])
+            <a href="{{url('/show') }}">个人中心</a>
+            <a href="{{url('/quit')}}">退出</a>
+        @else
+            <a href="/app-login">登录</a>
+            <a href="{{ route('register') }}">Register</a>
 
-@endif
+        @endif
     </div>
+
     <div class="content">
         <div class="title m-b-md">
             Laravel

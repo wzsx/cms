@@ -49,6 +49,6 @@ for($i=0;$i<count($arr);$i++){
 print_r ($arr);
 
 // F0=0，F1=1，Fn=F(n-1)+F(n-2)（n>=2，n∈N*）
-
-f(100)=
+$a  = array(1,2,3,4,5,6,7);
+print_r(array_chunk($a,2));
 ?>

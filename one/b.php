@@ -7,7 +7,7 @@ if($user_name){
 
 
 }else{
-    header("refresh:1;url=a.html");
+//header("refresh:1;url=a.html");
 //    echo "请重新登录2";
 }
 
